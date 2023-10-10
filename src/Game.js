@@ -23,5 +23,15 @@ export default class Game {
 
   draw(context) {
     this.player.draw(context)
+    this.userInterface.draw(context)
+    if (this.game.debug) {
+      context.strokeRect(this.x, this.y, this.width, this.height)
+      context.fillStyle = 'black'
+      context.font = '12px Arial'
+      context.fillText(this.frameX, this.x, this.y - 5)
+      this.userInterface.draw(context)
+    }
+
+    context.restore()
   }
 }

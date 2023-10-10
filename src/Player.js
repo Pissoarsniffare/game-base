@@ -1,4 +1,5 @@
 import Projectile from "./Projectile";
+import UserInterface from "./UserInterface";
 
 export default class Player {
     constructor(game) {
@@ -42,8 +43,14 @@ export default class Player {
         context.fillStyle = '#f00';
         context.fillRect(this.x, this.y, this.width, this.height);
         this.projectiles.forEach((projectile) => {
-            projectile.draw(context)
+            projectile.draw(context)   
         })
+        if (this.game.debug) {
+            context.strokeRect(this.x, this.y, this.width, this.height)
+            context.fillStyle = 'black'
+            context.font = '12px Arial'
+            context.fillText(this.frameX, this.x, this.y - 5)
+          }
     }
 
     shoot() {
