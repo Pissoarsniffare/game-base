@@ -1,3 +1,5 @@
+import Projectile from "./Projectile";
+
 export default class Player {
     constructor(game) {
         this.game = game;
@@ -8,31 +10,45 @@ export default class Player {
         this.speedX = 0
         this.speedY = 0
         this.maxSpeed = 10
-      }
+        this.projectiles = []
+    }
 
-      update(deltaTime) {
+    update(deltaTime) {
         if (this.game.keys.includes('w')) {
             this.speedY = -this.maxSpeed;
-          } else if (this.game.keys.includes('s')) {
-              this.speedY = this.maxSpeed;
-          } else {
-              this.speedY = 0;
-          }
-          if (this.game.keys.includes('a')) {
+        } else if (this.game.keys.includes('s')) {
+            this.speedY = this.maxSpeed;
+        } else {
+            this.speedY = 0;
+        }
+        if (this.game.keys.includes('a')) {
             this.speedX = -this.maxSpeed;
-          } else if (this.game.keys.includes('d')) {
-              this.speedX = this.maxSpeed;
-          } else {
-              this.speedX = 0;
-          }
+        } else if (this.game.keys.includes('d')) {
+            this.speedX = this.maxSpeed;
+        } else {
+            this.speedX = 0;
+        }
         this.x += this.speedX
         this.y += this.speedY
-      }
+        this.projectiles.forEach((projectile) => {
+            projectile.update()
+        })
+        this.projectiles = this.projectiles.filter(
+            (projectile) => !projectile.markedForDeletion
+        )
+    }
 
-      draw(context) {
+    draw(context) {
         context.fillStyle = '#f00';
         context.fillRect(this.x, this.y, this.width, this.height);
-
-
-      } 
+        this.projectiles.forEach((projectile) => {
+            projectile.draw(context)
+        })
     }
+
+    shoot() {
+        this.projectiles.push(
+          new Projectile(this.game, this.x + this.width, this.y + this.height / 2)
+        )
+      }
+}
