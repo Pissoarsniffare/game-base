@@ -1,5 +1,4 @@
 import Projectile from "./Projectile";
-import UserInterface from "./UserInterface";
 
 export default class Player {
     constructor(game) {
