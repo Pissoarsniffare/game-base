@@ -1,6 +1,6 @@
 import Slime from './Slime.js'
-import Player from './Player.js'
 import InputHandler from './InputHandler.js'
+import Player from './Player.js'
 import UserInterface from './UserInterface.js'
 export default class Game {
   constructor(width, height) {
@@ -9,7 +9,6 @@ export default class Game {
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
     this.keys = []
-    this.enemies = []
     this.gameOver = false
     this.gravity = 1
     this.debug = false
@@ -20,7 +19,6 @@ export default class Game {
     this.enemyInterval = 1000
 
     this.player = new Player(this)
-
   }
 
   update(deltaTime) {
@@ -36,7 +34,18 @@ export default class Game {
       this.enemyTimer += deltaTime
     }
 
-    this.enemies.forEach((enemy) => enemy.update(deltaTime))
+    this.enemies.forEach((enemy) => {
+      enemy.update(deltaTime)
+      if (this.checkCollision(this.player, enemy)) {
+        enemy.markedForDeletion = true
+      }
+      this.player.projectiles.forEach((projectile) => {
+        if (this.checkCollision(projectile, enemy)) {
+          enemy.markedForDeletion = true
+          projectile.markedForDeletion = true
+        }
+      })
+    })
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
   }
 
@@ -49,5 +58,13 @@ export default class Game {
   addEnemy() {
     this.enemies.push(new Slime(this))
   }
-}
 
+  checkCollision(object1, object2) {
+    return (
+      object1.x < object2.x + object2.width &&
+      object1.x + object1.width > object2.x &&
+      object1.y < object2.y + object2.height &&
+      object1.height + object1.y > object2.y
+    )
+  }
+}
