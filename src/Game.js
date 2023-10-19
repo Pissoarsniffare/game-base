@@ -19,6 +19,8 @@ export default class Game {
     this.enemyInterval = 1000
 
     this.player = new Player(this)
+
+    this.slimesKilled = 0;
   }
 
   update(deltaTime) {
