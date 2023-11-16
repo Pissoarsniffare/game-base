@@ -7,7 +7,7 @@ export default class FinalBoss extends Enemy {
     this.height = 128;
     this.x = game.width;
     this.y = Math.random() * (game.height * 0.9 - this.height);
-    this.speedX = -2; // Set an appropriate speed for the boss
-    this.lives = 100; // Set the boss's HP to 100
+    this.speedX = -2; 
+    this.lives = 100; 
   }
 }

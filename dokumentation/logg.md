@@ -10,3 +10,6 @@ gjorde klart steg 6. påbörjade på steg 7.
 2023-10-19
 Har gjort klart alla steg jag behöver. Nu ska jag lägga till en Final boss (Frej), jag gjorde en Frej.js och nu ska jag göra så att frej dyker upp när jag har dödat 100 slimes.
 
+2023-11-16
+försökte få frej att spawna men lyckades inte
+
