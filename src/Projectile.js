@@ -20,7 +20,7 @@ export default class Projectile {
       }
 
       draw(context) {
-        context.fillStyle = '#ff0'
+        context.fillStyle = '#65ff00'
         context.fillRect(this.x, this.y, this.width, this.height)
       }
 }

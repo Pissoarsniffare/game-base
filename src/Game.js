@@ -2,6 +2,8 @@ import Slime from './Slime.js'
 import InputHandler from './InputHandler.js'
 import Player from './Player.js'
 import UserInterface from './UserInterface.js'
+import background from './background.js'
+import mark from './mark.js'
 export default class Game {
   constructor(width, height) {
     this.width = width
@@ -14,6 +16,8 @@ export default class Game {
     this.debug = false
     this.gameTime = 0
 
+    this.bg = new background
+
     this.enemies = []
     this.enemyTimer = 0
     this.enemyInterval = 1000
@@ -21,6 +25,8 @@ export default class Game {
     this.player = new Player(this)
 
     this.slimesKilled = 0;
+
+    this.mark = new mark
   }
 
   update(deltaTime) {
@@ -52,6 +58,8 @@ export default class Game {
   }
 
   draw(context) {
+    this.bg.draw(context)
+    this.mark.draw(context)
     this.ui.draw(context)
     this.player.draw(context)
     this.enemies.forEach((enemy) => enemy.draw(context))

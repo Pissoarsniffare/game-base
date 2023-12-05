@@ -3,11 +3,47 @@ import Enemy from './Enemy'
 export default class Slime extends Enemy {
   constructor(game) {
     super(game)
-    this.width = 32
-    this.height = 32
+    this.width = 48
+    this.height = 35
     this.x = this.game.width
     this.y = Math.random() * (this.game.height * 0.9 - this.height)
     this.speedX = Math.random() * -1.5 - 0.5
     this.lives = 2
+
+    const img = new Image;
+    img.src = "./src/assets/images/fladd.png"
+    this.image = img
+
+    const img2 = new Image;
+    img2.src = "./src/assets/images/fladd2.png"
+
+    this.placeholder = 0;
+    this.placeholder2 = 0;
+    this.image1 = img;
+    this.image2 = img2;
+
+  }
+
+  draw(context) {
+    //context.fillStyle = '#ff00ff';
+    //context.fillRect(this.x, this.y, this.width, this.height);
+    if (this.placeholder > 20){
+      if(this.placeholder2 === 0){
+        this.image = this.image1;
+        this.placeholder2++
+      }
+      else if (this.placeholder2 === 1){
+        this.image = this.image2;
+        this.placeholder2--;
+      }
+      this.placeholder = 0
+    }
+    this.placeholder++
+
+    context.save()
+
+    // context.scale(-1, 1)
+    context.drawImage(this.image, this.x, this.y, this.width, this.height)
+    context.restore()
   }
 }

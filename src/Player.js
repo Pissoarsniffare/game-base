@@ -3,7 +3,7 @@ import Projectile from "./Projectile";
 export default class Player {
     constructor(game) {
         this.game = game;
-        this.width = 32;
+        this.width = 64;
         this.height = 64;
         this.x = 50;
         this.y = 100;
@@ -11,6 +11,10 @@ export default class Player {
         this.speedY = 0
         this.maxSpeed = 10
         this.projectiles = []
+
+        const img = new Image;
+        img.src = "./src/assets/images/karak.png"
+        this.image = img
     }
 
     update(deltaTime) {
@@ -36,11 +40,23 @@ export default class Player {
         this.projectiles = this.projectiles.filter(
             (projectile) => !projectile.markedForDeletion
         )
+        if (this.x <= 0) {
+            this.x = 0
+        }
+        if (this.x >= 854) {
+            this.x = 784
+        }
+        if (this.y <= 0) {
+            this.y = 0
+        }
+        if (this.y >= 330)
+            this.y = 330
     }
 
     draw(context) {
-        context.fillStyle = '#ff00ff';
-        context.fillRect(this.x, this.y, this.width, this.height);
+        //context.fillStyle = '#ff00ff';
+        //context.fillRect(this.x, this.y, this.width, this.height);
+        context.drawImage(this.image, this.x, this.y, this.width, this.height)
         this.projectiles.forEach((projectile) => {
             projectile.draw(context)   
         })

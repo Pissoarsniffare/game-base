@@ -10,6 +10,10 @@ export default class Enemy {
     update() {
         this.x += this.speedX
         if (this.x < 0) this.markedForDeletion = true
+
+        if (this.y >= 370) {
+          this.y = 300
+        }
       }
 
       draw(context) {
