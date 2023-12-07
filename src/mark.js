@@ -1,3 +1,5 @@
+import spriteImage from "./src/assets/images/mark.png"
+
 export default class mark {
     constructor(game) {
 
@@ -8,7 +10,7 @@ export default class mark {
         this.height = 512;
 
         const img = new Image;
-        img.src = "./src/assets/images/mark.png"
+        img.src = spriteImage
         this.image = img
 
     }
