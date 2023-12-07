@@ -1,6 +1,6 @@
 import Enemy from './Enemy'
-import spriteImage from "./src/assets/images/fladd.png"
-import spriteImage2 from "./src/assets/images/fladd2.png"
+import spriteImage from "./assets/images/fladd.png"
+import spriteImage2 from "./assets/images/fladd2.png"
 
 export default class Slime extends Enemy {
   constructor(game) {

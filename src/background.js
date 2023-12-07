@@ -1,4 +1,4 @@
-import spriteImage from "./src/assets/images/bg.png"
+import spriteImage from "./assets/images/bg.png"
 
 export default class background {
     constructor(game) {

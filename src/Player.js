@@ -1,5 +1,5 @@
 import Projectile from "./Projectile";
-import spriteImage from "./src/assets/images/karak.png"
+import spriteImage from "./assets/images/karak.png"
 
 export default class Player {
     constructor(game) {

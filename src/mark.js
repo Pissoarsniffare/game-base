@@ -1,4 +1,4 @@
-import spriteImage from "./src/assets/images/mark.png"
+import spriteImage from "./assets/images/mark.png"
 
 export default class mark {
     constructor(game) {
