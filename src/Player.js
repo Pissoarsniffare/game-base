@@ -44,7 +44,7 @@ export default class Player {
         if (this.x <= 0) {
             this.x = 0
         }
-        if (this.x >= 854) {
+        if (this.x >= 784) {
             this.x = 784
         }
         if (this.y <= 0) {

@@ -11,7 +11,7 @@ export default class Enemy {
         this.x += this.speedX
         if (this.x < 0) this.markedForDeletion = true
 
-        if (this.y >= 370) {
+        if (this.y >= 360) {
           this.y = 300
         }
       }
