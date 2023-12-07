@@ -1,4 +1,5 @@
 import Projectile from "./Projectile";
+import spriteImage from "./src/assets/images/karak.png"
 
 export default class Player {
     constructor(game) {
@@ -13,7 +14,7 @@ export default class Player {
         this.projectiles = []
 
         const img = new Image;
-        img.src = "./src/assets/images/karak.png"
+        img.src = spriteImage
         this.image = img
     }
 

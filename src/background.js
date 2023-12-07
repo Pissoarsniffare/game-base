@@ -1,3 +1,5 @@
+import spriteImage from "./src/assets/images/bg.png"
+
 export default class background {
     constructor(game) {
 
@@ -8,7 +10,7 @@ export default class background {
         this.height = 512;
 
         const img = new Image;
-        img.src = "./src/assets/images/bg.png"
+        img.src = spriteImage
         this.image = img
 
     }

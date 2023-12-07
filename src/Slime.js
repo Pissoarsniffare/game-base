@@ -1,4 +1,6 @@
 import Enemy from './Enemy'
+import spriteImage from "./src/assets/images/fladd.png"
+import spriteImage2 from "./src/assets/images/fladd2.png"
 
 export default class Slime extends Enemy {
   constructor(game) {
@@ -11,11 +13,11 @@ export default class Slime extends Enemy {
     this.lives = 2
 
     const img = new Image;
-    img.src = "./src/assets/images/fladd.png"
+    img.src = spriteImage
     this.image = img
 
     const img2 = new Image;
-    img2.src = "./src/assets/images/fladd2.png"
+    img2.src = spriteImage2
 
     this.placeholder = 0;
     this.placeholder2 = 0;
