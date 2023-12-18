@@ -1,4 +1,5 @@
 import Slime from './Slime.js'
+import Frej from './Frej.js'
 import InputHandler from './InputHandler.js'
 import Player from './Player.js'
 import UserInterface from './UserInterface.js'
@@ -27,6 +28,8 @@ export default class Game {
     this.slimesKilled = 0;
 
     this.mark = new mark
+
+    this.Frej = 0;
   }
 
   update(deltaTime) {
@@ -46,15 +49,24 @@ export default class Game {
       enemy.update(deltaTime)
       if (this.checkCollision(this.player, enemy)) {
         enemy.markedForDeletion = true
+        this.slimesKilled++;
       }
+
+
+
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
           enemy.markedForDeletion = true
           projectile.markedForDeletion = true
+          this.slimesKilled++;
         }
       })
     })
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
+
+    if (this.slimesKilled >= 5) {
+      this.spawnFrej();
+    }
   }
 
   draw(context) {
@@ -76,5 +88,12 @@ export default class Game {
       object1.y < object2.y + object2.height &&
       object1.height + object1.y > object2.y
     )
+  }
+
+  spawnFrej() {
+    if (!this.Frej) {
+      this.Frej = new Frej(this);
+      this.enemies.push(this.Frej);
+    }
   }
 }

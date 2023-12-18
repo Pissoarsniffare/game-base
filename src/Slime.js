@@ -24,6 +24,12 @@ export default class Slime extends Enemy {
     this.image1 = img;
     this.image2 = img2;
 
+    this.resetSlime();
+  }
+  resetSlime() {
+    this.x = this.game.width;
+    this.y = Math.random() * (this.game.height * 0.9 - this.height);
+    this.speedX = Math.random() * -1.5 - 0.5;
   }
 
   draw(context) {
