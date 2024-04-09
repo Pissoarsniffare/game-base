@@ -5,6 +5,7 @@ export default class Enemy {
       this.y = 0
       this.speedX = 0
       this.markedForDeletion = false
+      this.lives = 1
     }
 
     update() {
@@ -14,6 +15,10 @@ export default class Enemy {
         if (this.y >= 360) {
           this.y = 300
         }
+        if (this.lives <= 0) {
+          this.markedForDeletion = true;
+      }
+        
       }
 
       draw(context) {
@@ -23,7 +28,7 @@ export default class Enemy {
 
         if (this.game.debug) {
           context.strokeRect(this.x, this.y, this.width, this.height)
-          context.fillStyle = 'black'
+          context.fillStyle = 'white'
           context.font = '20px Arial'
           context.fillText(this.lives, this.x, this.y - 5)
           context.font = '12px Arial'

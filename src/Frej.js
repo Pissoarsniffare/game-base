@@ -4,8 +4,8 @@ import spriteImage from "./assets/images/frejboss.png";
 export default class Frej extends Enemy {
     constructor(game) {
       super(game);
-      this.width = 100;
-      this.height = 100;
+      this.width = 200;
+      this.height = 200;
       this.x = this.game.width;
       this.y = Math.random() * (this.game.height * 0.9 - this.height);
       this.speedX = Math.random() * -1.5 - 0.5;

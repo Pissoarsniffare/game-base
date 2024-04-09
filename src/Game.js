@@ -29,7 +29,7 @@ export default class Game {
 
     this.mark = new mark
 
-    this.Frej = 0;
+    this.Frej = false;
   }
 
   update(deltaTime) {
@@ -64,7 +64,7 @@ export default class Game {
     })
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
 
-    if (this.slimesKilled >= 5) {
+    if (this.slimesKilled >= 5 && !this.Frej) {
       this.spawnFrej();
     }
   }
@@ -91,9 +91,7 @@ export default class Game {
   }
 
   spawnFrej() {
-    if (!this.Frej) {
-      this.Frej = new Frej(this);
-      this.enemies.push(this.Frej);
-    }
+    this.Frej = new Frej(this);
+    this.enemies.push(this.Frej);
   }
 }
