@@ -50,6 +50,8 @@ export default class Game {
       if (this.checkCollision(this.player, enemy)) {
         enemy.markedForDeletion = true
         this.slimesKilled++;
+        this.player.hp--;
+        console.log(this.player.hp)
       }
 
 
@@ -66,6 +68,10 @@ export default class Game {
 
     if (this.slimesKilled >= 5 && !this.Frej) {
       this.spawnFrej();
+    }
+
+    if (this.player.hp<=0) {
+      this.gameOver = true
     }
   }
 

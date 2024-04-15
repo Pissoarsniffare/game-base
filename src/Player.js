@@ -12,6 +12,7 @@ export default class Player {
         this.speedY = 0
         this.maxSpeed = 10
         this.projectiles = []
+        this.hp = 3
 
         const img = new Image;
         img.src = spriteImage

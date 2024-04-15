@@ -20,6 +20,19 @@ export default class UserInterface {
             100
         )
 
+        context.save()
+        context.fillStyle = this.color
+        context.shadowOffsetX = 2
+        context.shadowOffsetY = 2
+        context.shadowColor = 'black'
+        context.textAlign = 'left'
+        context.font = `${this.fontSize}px ${this.fontFamily}`
+        context.fillText(
+            `Lives: ${(this.game. * 0.001).toFixed(1)}`,
+            20,
+            70
+        )
+
         if (this.game.gameOver) {
             context.textAlign = 'center'
             context.font = `50px ${this.fontFamily}`
