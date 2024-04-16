@@ -1,5 +1,6 @@
 import Slime from './Slime.js'
 import Frej from './Frej.js'
+import Jens from './Jens.js'
 import InputHandler from './InputHandler.js'
 import Player from './Player.js'
 import UserInterface from './UserInterface.js'
@@ -30,6 +31,8 @@ export default class Game {
     this.mark = new mark
 
     this.Frej = false;
+
+    this.Jens = false;
   }
 
   update(deltaTime) {
@@ -51,27 +54,38 @@ export default class Game {
         enemy.markedForDeletion = true
         this.slimesKilled++;
         this.player.hp--;
-        console.log(this.player.hp)
       }
 
 
 
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
-          enemy.markedForDeletion = true
+          enemy.hp -= projectile.damage
+          if (enemy.hp <= 0) {
+            enemy.markedForDeletion = true
+            this.slimesKilled++;
+          }
           projectile.markedForDeletion = true
-          this.slimesKilled++;
+          
+          console.log(this.slimesKilled)
         }
       })
     })
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
 
-    if (this.slimesKilled >= 5 && !this.Frej) {
-      this.spawnFrej();
+    if (this.slimesKilled >= 5 && !this.Frej && !this.Jens) {
+        const chance = Math.random()
+        if (chance <= 0.2) {
+          this.spawnJens();
+        } else {
+          this.spawnFrej();
+        }
+      
     }
 
-    if (this.player.hp<=0) {
+    if (this.player.hp <= 0) {
       this.gameOver = true
+      this.enemies = [];
     }
   }
 
@@ -99,5 +113,11 @@ export default class Game {
   spawnFrej() {
     this.Frej = new Frej(this);
     this.enemies.push(this.Frej);
+    this.slimesKilled = 0;
   }
+
+  spawnJens() {
+    this.Jens = new Jens(this);
+    this.enemies.push(this.Jens);
+}
 }

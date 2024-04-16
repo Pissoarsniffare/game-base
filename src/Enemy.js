@@ -5,7 +5,7 @@ export default class Enemy {
       this.y = 0
       this.speedX = 0
       this.markedForDeletion = false
-      this.lives = 1
+      this.hp = 1
     }
 
     update() {

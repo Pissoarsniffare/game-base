@@ -20,28 +20,33 @@ export default class Player {
     }
 
     update(deltaTime) {
-        if (this.game.keys.includes('w')) {
-            this.speedY = -this.maxSpeed;
-        } else if (this.game.keys.includes('s')) {
-            this.speedY = this.maxSpeed;
-        } else {
-            this.speedY = 0;
-        }
-        if (this.game.keys.includes('a')) {
-            this.speedX = -this.maxSpeed;
-        } else if (this.game.keys.includes('d')) {
-            this.speedX = this.maxSpeed;
-        } else {
-            this.speedX = 0;
-        }
-        this.x += this.speedX
-        this.y += this.speedY
+        if (!this.game.gameOver) {
+            if (this.game.keys.includes('w')) {
+                this.speedY = -this.maxSpeed;
+            } else if (this.game.keys.includes('s')) {
+                this.speedY = this.maxSpeed;
+            } else {
+                this.speedY = 0;
+            }
+            if (this.game.keys.includes('a')) {
+                this.speedX = -this.maxSpeed;
+            } else if (this.game.keys.includes('d')) {
+                this.speedX = this.maxSpeed;
+            } else {
+                this.speedX = 0;
+            }
+            this.x += this.speedX
+            this.y += this.speedY
+        
+
         this.projectiles.forEach((projectile) => {
             projectile.update()
         })
         this.projectiles = this.projectiles.filter(
             (projectile) => !projectile.markedForDeletion
         )
+    
+    }
         if (this.x <= 0) {
             this.x = 0
         }
@@ -60,19 +65,19 @@ export default class Player {
         //context.fillRect(this.x, this.y, this.width, this.height);
         context.drawImage(this.image, this.x, this.y, this.width, this.height)
         this.projectiles.forEach((projectile) => {
-            projectile.draw(context)   
+            projectile.draw(context)
         })
         if (this.game.debug) {
             context.strokeRect(this.x, this.y, this.width, this.height)
             context.fillStyle = 'black'
             context.font = '12px Arial'
             context.fillText(this.frameX, this.x, this.y - 5)
-          }
+        }
     }
 
     shoot() {
         this.projectiles.push(
-          new Projectile(this.game, this.x + this.width, this.y + this.height / 2)
+            new Projectile(this.game, this.x + this.width, this.y + this.height / 2)
         )
-      }
+    }
 }
