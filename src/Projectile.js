@@ -16,6 +16,7 @@ export default class Projectile {
         if (this.x > this.game.width) {
           this.markedForDeletion = true
         }
+      
       }
 
       draw(context) {

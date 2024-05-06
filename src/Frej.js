@@ -10,6 +10,8 @@ export default class Frej extends Enemy {
       this.y = Math.random() * (this.game.height * 0.9 - this.height);
       this.speedX = Math.random() * -1.5 - 0.5;
       this.hp = 50;
+      this.score = 69
+      this.damage = 2
   
       const img = new Image();
       img.src = spriteImage;

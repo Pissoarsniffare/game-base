@@ -11,6 +11,8 @@ export default class Slime extends Enemy {
     this.y = this.game.height
     this.speedX = Math.random() * -1.5 - 0.5
     this.hp = 100
+    this.score = 666
+    this.damage = 3
 
     const img = new Image;
     img.src = spriteImage

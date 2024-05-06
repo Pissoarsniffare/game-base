@@ -24,7 +24,13 @@ export default class UserInterface {
           `HP: ${this.game.player.hp}`,
           20,
           65
-      )
+        )
+
+        context.fillText(
+          `Score: ${this.game.score}`,
+          20,
+          30
+        )
 
         if (this.game.gameOver) {
             context.textAlign = 'center'

@@ -6,6 +6,9 @@ import Player from './Player.js'
 import UserInterface from './UserInterface.js'
 import background from './background.js'
 import mark from './mark.js'
+import Projectile from './Projectile.js'
+import slimeboom from './slimeboom.js'
+import finalbossmusic from './finalboss.mp3'
 export default class Game {
   constructor(width, height) {
     this.width = width
@@ -33,12 +36,27 @@ export default class Game {
     this.Frej = false;
 
     this.Jens = false;
+
+    this.score = 0;
+
+    this.damage = 0;
+
+    this.finalbossmusic = new Audio(finalbossmusic);
+    this.finalbossmusic.loop = true;
+
+    this.finalbossmusicplaying = false;
   }
 
   update(deltaTime) {
     if (!this.gameOver) {
       this.gameTime += deltaTime
+      
     }
+
+    if (this.gameOver) {
+      
+    }
+
     this.player.update(deltaTime)
 
     if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
@@ -52,8 +70,9 @@ export default class Game {
       enemy.update(deltaTime)
       if (this.checkCollision(this.player, enemy)) {
         enemy.markedForDeletion = true
+        this.score += enemy.score;
         this.slimesKilled++;
-        this.player.hp--;
+        this.player.hp -= enemy.damage;
       }
 
 
@@ -64,6 +83,8 @@ export default class Game {
           if (enemy.hp <= 0) {
             enemy.markedForDeletion = true
             this.slimesKilled++;
+            this.score += enemy.score;
+            new slimeboom
           }
           projectile.markedForDeletion = true
           
@@ -73,13 +94,14 @@ export default class Game {
     })
     this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
 
-    if (this.slimesKilled >= 5 && !this.Frej && !this.Jens) {
+    if (this.slimesKilled >= 5 && !this.Jens && !this.Frej) {
         const chance = Math.random()
         if (chance <= 0.2) {
           this.spawnJens();
         } else {
           this.spawnFrej();
         }
+        
       
     }
 
@@ -96,6 +118,9 @@ export default class Game {
     this.player.draw(context)
     this.enemies.forEach((enemy) => enemy.draw(context))
   }
+
+
+
 
   addEnemy() {
     this.enemies.push(new Slime(this))
@@ -114,10 +139,20 @@ export default class Game {
     this.Frej = new Frej(this);
     this.enemies.push(this.Frej);
     this.slimesKilled = 0;
+
+    if (!this.finalbossmusicplaying) {
+      this.finalbossmusic.play();
+      this.finalbossmusicplaying = true;
+    }
   }
 
   spawnJens() {
     this.Jens = new Jens(this);
     this.enemies.push(this.Jens);
+
+    if (!this.finalbossmusicplaying) {
+      this.finalbossmusic.play();
+      this.finalbossmusicplaying = true;
+    }
 }
 }
