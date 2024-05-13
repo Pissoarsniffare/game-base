@@ -16,3 +16,6 @@ gjort score, jens yappade lite grann, gjort så att olika fienden gör olika myc
 
 2024-04-30
 gjorde glitch grej
+
+2024-05-13
+gjorde glitch grej igen, thunder client crejs, kan posta grejs nu

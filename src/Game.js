@@ -9,6 +9,7 @@ import mark from './mark.js'
 import Projectile from './Projectile.js'
 import slimeboom from './slimeboom.js'
 import finalbossmusic from './finalboss.mp3'
+import normalmusic from './normal1.wav'
 export default class Game {
   constructor(width, height) {
     this.width = width
@@ -41,9 +42,11 @@ export default class Game {
 
     this.damage = 0;
 
+    this.normalmusic = new Audio(normalmusic);
+    this.normalmusic.loop = true
+
     this.finalbossmusic = new Audio(finalbossmusic);
     this.finalbossmusic.loop = true;
-
     this.finalbossmusicplaying = false;
   }
 
