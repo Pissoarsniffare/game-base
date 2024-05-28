@@ -8,8 +8,9 @@ import background from './background.js'
 import mark from './mark.js'
 import Projectile from './Projectile.js'
 import slimeboom from './slimeboom.js'
-import finalbossmusic from './finalboss.mp3'
+import finalbossmusic from './finalboss.wav'
 import normalmusic from './normal1.wav'
+import Highscore from './Highscore.js'
 export default class Game {
   constructor(width, height) {
     this.width = width
@@ -38,8 +39,6 @@ export default class Game {
 
     this.Jens = false;
 
-    this.score = 0;
-
     this.damage = 0;
 
     this.normalmusic = new Audio(normalmusic);
@@ -48,17 +47,17 @@ export default class Game {
     this.finalbossmusic = new Audio(finalbossmusic);
     this.finalbossmusic.loop = true;
     this.finalbossmusicplaying = false;
+    
+    this.score = 0;
+    this.name = "def"
+    this.highscore = new Highscore(this)
+    this.highscore.getScore()
   }
 
   update(deltaTime) {
     if (!this.gameOver) {
       this.gameTime += deltaTime
-      
-    }
-
-    if (this.gameOver) {
-      
-    }
+     
 
     this.player.update(deltaTime)
 
@@ -111,7 +110,11 @@ export default class Game {
     if (this.player.hp <= 0) {
       this.gameOver = true
       this.enemies = [];
+      this.highscore.postScore(this.score)
+      
+
     }
+  }
   }
 
   draw(context) {

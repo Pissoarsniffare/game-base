@@ -7,7 +7,8 @@ export default class InputHandler {
                 (event.key === 'w' ||
                     event.key === 's' ||
                     event.key === 'a' ||
-                    event.key === 'd') &&
+                    event.key === 'd' ||
+                    event.key === ' ') &&
                 this.game.keys.indexOf(event.key) === -1
             ) {
                 this.game.keys.push(event.key)
@@ -15,10 +16,11 @@ export default class InputHandler {
             if (event.key === 'f') {
                 this.game.debug = !this.game.debug
             }
-            if (event.key === ' ') {
+            if (this.game.keys.includes(' ')) {
                 this.game.player.shoot()
             }
         })
+        
         window.addEventListener('keyup', (event) => {
             if (this.game.keys.indexOf(event.key) > -1) {
                 this.game.keys.splice(this.game.keys.indexOf(event.key), 1)

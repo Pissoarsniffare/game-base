@@ -19,3 +19,7 @@ gjorde glitch grej
 
 2024-05-13
 gjorde glitch grej igen, thunder client crejs, kan posta grejs nu
+
+2024-05-27
+klar frfr orkar inte mer. 
+
