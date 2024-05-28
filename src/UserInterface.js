@@ -43,12 +43,21 @@ export default class UserInterface {
     }
 
     if (this.game.gameOver && this.game.hasinputname == false){
-      let name = prompt ("What's your name?") 
+      let name = prompt ("What's your name? (Max 3 letters)") 
       this.game.name = name
-        
-      if (name != null){
+      if (this.game.name !== null && 
+        this.game.name !== undefined && 
+         typeof(this.game.score) === "number" && 
+         this.game.score < 1000 &&
+        this.game.name.length < 4 && 
+         this.game.name.length > 0){
+        this.game.highscore.postScore(this.game.score)
+      }
+      
+      
+      if (this.name !== null){
         alert(`Your score is: ${this.game.score} 
-        Your alltime highscore is: ${this.game.highscore.highscore}`)
+        Alltime global highscore: ${this.game.highscore.highscore} by ${this.game.highscore.name.toUpperCase()}`)
         this.game.hasinputname = true
       }
   }

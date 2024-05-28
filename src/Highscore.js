@@ -29,7 +29,7 @@ export default class Highscore {
   async postScore(score) {
     console.log("skicka score")
 
-    const data = { score, namn: "smaul" }
+    const data = { score, name: "smaul" }
     console.log(score)
     await fetch(`${this.url}/score`, {
       method: "POST",
